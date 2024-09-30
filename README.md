@@ -188,3 +188,11 @@ Topological ordering can be helpful to to detect cycles in a graph.
 **Example Problems**
 1. [Alien Dictionary](https://neetcode.io/problems/foreign-dictionary)
 2. [Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/description/)
+
+
+## Kadane's Algorithm
+
+Kadane's Algorithm is a *Dynamic Programming* approach to efficiently genrate the maximum subarray sum of a given array of items, both positive and negative. The algorithm uses the following recurrance relation: `Local maxima at A[i] = max(local maxima at A[i - 1] + item at A[i], item at A[i])`
+
+**Example Problems**
+1. [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
