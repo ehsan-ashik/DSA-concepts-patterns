@@ -196,3 +196,26 @@ Kadane's Algorithm is a *Dynamic Programming* approach to efficiently genrate th
 
 **Example Problems**
 1. [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
+
+
+## Bit Manipulation Tricks
+
+Several important concepts are important to solve Bit manipulation problems. Most important is to look at some masks:
+
+* 32-bit All set bits mask: `0xffffffff` or `~0`
+* MAX integer in 32-bits mask: `0x7fffffff`
+* MIN integer in 32-bits mask: `0x80000000`
+* Set union: `A | B`
+* Set intersection: `A & B`
+* Set Negation: `ALL-SET ^ A` or `~A`
+* Set substraction: `A & ~B`
+* Set a bit in a position: `A |= (1 << pos)`
+* Clear a bit in a position: `A & = ~(1 << pos)`
+* Test if a bit is set: `A & (1 << bit)` or `(A >> bit) & 1`
+* Extract LSB: `A & ~(A - 1)`
+* Remove LSB: `A & (A - 1)`
+* 2's complement of a number: `~(A ^ ALL-SET)`
+
+**Example Problems**
+1. [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/description/)
+2. [Reverse Bits](https://leetcode.com/problems/reverse-bits/description/)
