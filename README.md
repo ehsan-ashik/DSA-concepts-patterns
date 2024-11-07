@@ -219,3 +219,55 @@ Several important concepts are important to solve Bit manipulation problems. Mos
 **Example Problems**
 1. [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/description/)
 2. [Reverse Bits](https://leetcode.com/problems/reverse-bits/description/)
+
+
+## KMP Pattern Matching Algorithm
+
+KMP optimizes the classic pattern matching problem where we're given a string and a pattern, and we need to find the occurrances of the pattern in the string. In a conventional serch for pattern from each position of string results in a O(m * n) time complexity, where we essentially need to check for the pattern from each position of string.
+
+KMP optimizes this process by precommuting a `LPS Array` for the pattern, where value in each index `i` represents the length of the longest proper prefix, which is also a suffix in the string pattern[0..i]. With the help of this LPS array, a subsequent search for the pattern in the string results in O(m + n) time complexity, greatly reducing the overall time required to search for the pattern in the string. Below is a python implementation of the LPS array and the pattern matching using the array. 
+
+```python
+def generateLPS(self, pat):
+        lps = [0] * len(pat)
+        lpsLen, i = 0, 1 # matching is starting from 1 as LPS[0] is always 0 # proper prefix is of length 0
+
+        while i < len(pat):
+            if pat[lpsLen] == pat[i]:
+                lpsLen += 1
+                lps[i] = lpsLen
+                i += 1
+            elif lpsLen > 0:
+                lpsLen = lps[lpsLen - 1]
+            else:
+                lps[i] = 0
+                i += 1
+
+        return lps
+
+def strStr(self, s: str, pattern: str) -> int:
+        if len(pattern) > len(s): return -1
+
+        lps = self.generateLPS(pattern)
+        matchedStartIds = []
+
+        i = j = 0
+
+        while i < len(s):
+            if s[i] == pattern[j]:
+                i += 1
+                j += 1
+            elif j:
+                j = lps[j - 1]
+            else:
+                i += 1
+            
+            if j == len(pattern):
+                matchedStartIds.append(i - j)
+                j = lps[j - 1]
+            
+        return matchedStartIds
+```
+
+**Example Problems**
+1. [Find the Index of the First Occurrence in a String] (https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
