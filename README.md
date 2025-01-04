@@ -270,4 +270,72 @@ def strStr(self, s: str, pattern: str) -> int:
 ```
 
 **Example Problems**
-1. [Find the Index of the First Occurrence in a String] (https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
+1. [Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
+
+
+## Segment Tree
+The **Segment Tree** data structure offers efficient ways to query and update a range or an interval. This data structure is very useful for range queries, such as finding range sum in a given array when the array may get updated frequently. In such a scenario, we can generate a Segment Tree for to efficiently store sums of elements in the array for each range. The root contains sum of all elements from 0 to n - 1, left subtree includes sum of the left half, and the right subtree includes the sum of the right half of the array. Below is an implementation of a Segment Tree to efficiently updating and returning range sums. The Tree creation recursively creates the segment tree from the given array in O(n) times. Updating the segment tree and getting the query range sum take O(log n) a piece.
+
+```python
+class SegmentTreeNode:
+    def __init__(self, leftId, rightId):
+        self.leftId = leftId
+        self.rightId = rightId
+        self.rangeSum = 0
+        self.left, self.right = None, None
+
+class SegmentTree:
+    def __init__(self, nums: List[int]):
+        leftId, rightId = 0, len(nums) - 1
+        self.root = self.createTree(nums, leftId, rightId)
+    
+    def createTree(self, nums: List[int], l: int, r: int) -> Optional[SegmentTreeNode]:
+        if l > r:
+            return None
+        if l == r:
+            node = SegmentTreeNode(l, r)
+            node.rangeSum = nums[l]
+            return node
+        
+        mid = l + (r - l) // 2
+        
+        root = SegmentTreeNode(l, r)
+        root.left = self.createTree(nums, l, mid)
+        root.right = self.createTree(nums, mid + 1, r)
+        root.rangeSum = root.left.rangeSum + root.right.rangeSum
+
+        return root
+    
+    def updateTree(self, root: Optional[SegmentTreeNode], index: int, value: int) -> None:
+        if not root:
+            return
+        if root.leftId == root.rightId:
+            root.rangeSum = value
+            return
+        
+        mid = root.leftId + (root.rightId - root.leftId) // 2
+
+        if index <= mid:
+            self.updateTree(root.left, index, value)
+        else:
+            self.updateTree(root.right, index, value)
+        
+        root.rangeSum = root.left.rangeSum + root.right.rangeSum
+
+    def getRangeSum(self, root: Optional[SegmentTreeNode], l: int, r: int):
+        if not root:
+            return 0
+        if root.leftId == l and root.rightId == r:
+            return root.rangeSum
+        
+        mid = root.leftId + (root.rightId - root.leftId) // 2
+        if r <= mid:
+            return self.getRangeSum(root.left, l, r)
+        elif l > mid:
+            return self.getRangeSum(root.right, l, r)
+        else:
+            return self.getRangeSum(root.left, l, mid) + self.getRangeSum(root.right, mid + 1, r)
+```
+
+**Example Problems**
+1. [Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/description/)
