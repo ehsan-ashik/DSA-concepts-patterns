@@ -341,8 +341,8 @@ class SegmentTree:
 1. [Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/description/)
 
 
-## Binary Index Tree (AKA Fenwick Tree)
-Binary Index Tree, which also known as Fenwick Tree, offers similar range query functionality like Segment Trees while offering added benifits like lest space requirement and easy implementation. Instead of a custom tree structure with left and right child, Binary Index Trees can be stored in a one dimnetional array where each index contains a subset of sums based on specific property that each integer can be expressed as the sum of power of 2. For example, 19 can be written as 2^4 + 2^1 + 2^0. We use the indexing (index & -index) to get the parent/child of a particular node. Adding this value gives the index of the parent node of a child. To get the series sum from a child node, we add the value stored in each partial node by substracting the indexing schema till index 0.
+## Binary Indexed Tree (AKA Fenwick Tree)
+Binary Indexed Tree, which also known as Fenwick Tree, offers similar range query functionality like Segment Trees while offering added benifits like lest space requirement and easy implementation. Instead of a custom tree structure with left and right child, Binary Indexed Trees can be stored in a one dimnetional array where each index contains a subset of sums based on specific property that each integer can be expressed as the sum of power of 2. For example, 19 can be written as 2^4 + 2^1 + 2^0. We use the indexing (index & -index) to get the parent/child of a particular node. Adding this value gives the index of the parent node of a child. To get the series sum from a child node, we add the value stored in each partial node by substracting the indexing schema till index 0.
 
 ```python
 class BinaryIndexedTree:
