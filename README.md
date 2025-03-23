@@ -176,7 +176,7 @@ We can also count the number of shortest path ways we can reach the destination 
 
 **Example Problems**
 1. [Network Delay Time](https://leetcode.com/problems/network-delay-time/description/)
-2. [Number of Ways to Arrive at Destination] (https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/description/)
+2. [Number of Ways to Arrive at Destination](https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/description/)
 
 
 
