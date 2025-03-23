@@ -172,8 +172,11 @@ Minimum Spanning Tree (MST) is a subset of edges in a graph that connects all th
 
 **Dijakstra's Algorithm** can help find the shortest path (from a source to a destination node) in a directed or undirected weighted graph that does not contain *negative edge weights*. The algorithm starts from the *source* node and greedily pick the next node with the shortest distance. If a shorter path to a node is found, the shortest distance is updated accordingly. We can leverage a **Min Heap** to pick the next node until the *destination* node is obtained. If a new shorter path for a node is found, we update it's distance and put it in the min heap for subsequent runs. 
 
+We can also count the number of shortest path ways we can reach the destination using a separate `path_counts` object. See Example 2 implementation in Leetcode.
+
 **Example Problems**
 1. [Network Delay Time](https://leetcode.com/problems/network-delay-time/description/)
+2. [Number of Ways to Arrive at Destination] (https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/description/)
 
 
 
